@@ -1,0 +1,64 @@
+//锁频段
+at+csq;+qnwinfo;+cereg?;      //查看注册的网络
+AT+QCFG="band",0,1,0          //锁band 1
+AT+QCFG="band",0,4,0          //锁band 3
+AT+QCFG="band",0,10,0        //锁band 5
+AT+QCFG="band",0,40,0        //锁band 7
+AT+QCFG="band",0,80,0        //锁band 8
+AT+QCFG="band",0,1e200000095,0   
++QCFG: "band",0x493,0x1e200000095,0x21  //默认状态
+AT+QCFG="band"  //查看锁频状态
+
+//锁网络
+AT+QCFG="nwscanmode",3  //锁LTE
+AT+QCFG="nwscanmode",0  //AUTO 默认
+AT+QCFG="nwscanmode",2  //锁WCDMA
+AT+QCFG="nwscanmode"=?  //查询当前设置网络模式
+
+//锁小区（cell）重启丢失  需要先锁LTE only
+//"common/4g",<num of cells>,[[<freq>,<pci>],...]
+AT+QNWLOCK="common/4g"  //旧命令
+at+qnwlock="common/lte"  //新命令
+at+qnwlock="common/lte",0  //关闭锁频
+at+qnwlock="common/lte",1,earfcn,0  //锁频点EARFCN
+at+qnwlock="common/lte",2,earfcn,pci,0  //锁小区cell
+
+设置工作模式
+AT+QCFG="usbnet",0  //RMNET QMI 默认
+AT+QCFG="usbnet",1  //ECM
+AT+QCFG="usbnet",2  //MBIM
+AT+QCFG="usbnet",3  //RNDIS
+
+AT+EGMR=1,7,"15位imei"  //更改imei
+AT+QLINUXCMD=  //访问模块内置linux
+
+
+
+
+AT+QCFG=?  //总读取命令
+at+qeng="servingcell"  //查看当前注册小区信息
+AT+QSIMDET=1  //sim热插拔
+AT+QNWINFO  //查看当前注册band
+
+
+
+单天线 电信band3 500-600k
+           联通 band1 <25 Mbps 稳定20
+
+BM806U双天线 联通band1 30-38Mbps
+            电信band3 稳定15Mbps
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo -e "ATI"/r/n > /dev/ttyUSB2

@@ -1,0 +1,4 @@
+sudo pptpsetup --create pptp1 --server 117.158.52.55 --username yigao --password yigao520 --encrypt --start  //创建vpn
+pon pptp1  //连接vpn
+poff pptp1  //断开vpn
+route add default gw 192.168.26.1  //添加ppp0默认路由

@@ -1,0 +1,3 @@
+USB AX88179作为WAN CPU满载
+5G 36信道 80Mhz带宽 190Mbps
+2.4G 1信道 20Mhz带宽 100Mbps

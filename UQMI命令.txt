@@ -1,0 +1,6 @@
+uqmi -d /dev/cdc-wdm0 --get-signal-info  //查看信号强度及类型
+uqmi -d /dev/cdc-wdm0 --get-serving-system  //查看注册的网络
+uqmi -d /dev/cdc-wdm0 --get-data-status  //查看网络是否连接
+uqmi -d /dev/cdc-wdm0 --get-current-settings  //查看ip和dns
+uqmi -d /dev/cdc-wdm0 --set-device-operating-mode reset  //重启模块
+uqmi -d /dev/cdc-wdm0 --get-capabilities

@@ -1,0 +1,57 @@
+AT^SYSCFGEX="00",3FFFFFFF,1,2,7FFFFFFFFFFFFFFF,,  /auto 4G 3G 2G
+AT^SYSCFGEX="03",3FFFFFFF,1,2,7FFFFFFFFFFFFFFF,,  //锁LTE only
+AT^SYSCFGEX="0302",3FFFFFFF,1,2,7FFFFFFFFFFFFFFF,,  //锁LTE + WCDMA
+AT^SYSCFGEX="02",3FFFFFFF,1,2,7FFFFFFFFFFFFFFF,,  //WCDMA only
+AT^SYSCFGEX="03",3FFFFFFF,2,4,1,,  //锁band 1
+AT^SYSCFGEX="03",3FFFFFFF,2,4,4,,  //锁band 3
+AT^SYSCFGEX="03",3FFFFFFF,2,4,80,,  //锁band 8
+SYSCFGEX: "0201",3FFFFFFF,1,2,7FFFFFFFFFFFFFFF  //默认
+AT^SYSCFGEX?  //查看锁网状态
+联通卡测试band 1 3 8 均可锁频使用
+AT^CURC=0  //关闭信息主动上报
+AT^MONSC  //用于查询当前服务小区的参数
+AT^HFREQINFO?  //查看当前频率等详细信息
+AT^MONNC  //相邻小区信息
+AT^NDISDUP=1,1  //NDIS拨号
+AT^NDISDUP=1,0  //断开连接
+AT^NDISDUP=1,1,"ctnet"
+echo -en 'AT^NDISDUP=1,0\r\n' > /dev/ttyUSB6  //openwrt命令行下断开连接
+echo -en 'AT^NDISDUP=1,1,"ctnet"\r\n' > /dev/ttyUSB6  //开启连接
+AT+CGATT?  //拨号结果
+AT^NDISSTATQRY?
+
+AT^SYSINFOEX
+
+AT^FREQLOCK?  //查看锁频点/小区状态
+AT^FREQLOCK=1,"04",400,,,276  //1代表开启锁频，04代表LTE，400代表频点，277代表小区号（pci）
+AT^FREQLOCK=1,"04",3716,,,147  //配合AT^MONNC使用
+AT^FREQLOCK=1,"04",1850,,,4
+AT^FREQLOCK=1,"04",1506,,,1
+AT^FREQLOCK=0  //关闭锁小区
+//锁频掉电不保存
+
+AT^CELLLOCK=1,"04","A","B"  //小区锁 1代表开启,04代表LTE,A代表位置,B代表小区  //待确认
+AT^CELLLOCK=1,"04","1850","321"
+ttyUSB0 //拨号  //速度达到60M以上
+ttyUSB1
+ttyUSB2  //AT命令
+wwan0  //NDIS DHCP接口
+
+联通卡测试band 1 3 8 均可使用
+
+AT^CHIPTEMP? //查询温度
+AT^THERMFUN=0  //关闭温度保护,1打开
+AT^ANTMODE=0,0  //所有网络同时打开主天线和分集天线
+AT+CFUN=1,1  //设置为标准模式并重启
+AT+CFUN=6  //重启
+AT^LEDCTRL=1  //开启LED
+AT^MSO  //关机
+AT^RESET  //重置
+AT+COPS=0  //自动搜索网络（默认）
+
+at^setmode=0  //便准模式（默认）
+at^setmode=1  //Win10下打开调试接口
+
+
+
+AT^FOTACFG="3gnet","","",2

@@ -1,0 +1,57 @@
+//使用方法 首先安装minicom ssh下 minicom -D /dev/ttyUSB2
+ATI  //查看基本参数
+AT+BMBANDPREF=0,1,0  //锁band1(支持)
+AT+BMBANDPREF=0,4,0  //锁band3(支持)
+AT+BMBANDPREF=0,10,0  //锁band5(BM817C支持--待确认)
+AT+BMBANDPREF=0,80,0  //锁band8(支持)
+AT+BMBANDPREF=0,1E000000085,0  //BM806恢复默认
+AT+BMBANDPREF=2000004400383,1E000000095,21 //BM817C恢复默认
+AT+BMBANDPREF?  //查看锁频状态
+AT+BMBANDPREF=?  //查看支持的band
+AT+BMBAND  //查看频段（auto模式下有意义）
+AT+BMTCELLINFO  //查看当前注册小区信息、
+AT+BMCELLINFO
+AT+BMRAT  //查看当前网络类型
+//联通LTE b1 b3 b8  WCDMA b1 b8
+//电信LTE b1b3 b5
+//如果注册不上网络则执行"AT+COPS=?"搜索网络
+//换卡最好重启（更换运营商）
+//锁频段之后最好重启才能注册网络
+//换band之后需要重新获取ip不然无法上网
+uqmi -d /dev/cdc-wdm0 --set-device-operating-mode reset  //重启模块
+
+
+AT+BMMODODREX?  //查看当前锁网状态
+AT+BMMODODREX=?  //列出锁网模式
+AT+BMMODODREX=5  //锁LTE only
+AT+BMMODODREX=20  //锁LTE+WCDMA
+AT+BMMOBAPREF?
+AT+BMMOBAPREF=2,0 //(开启设备所有频段，和AT+BMMODODREX效果相同)
+AT+BMMOBAPREF=5,0  //(LTE only，和AT+BMMODODREX效果相同 )
+at+csq  //查看信号强度
+at+cops?  //查看注册的运营商
+AT&F  //恢复默认配置
+AT+BMBANDPREF: 0x2000000400380, 0x1E000000085, 0x21  //BM806U默认配置
++BMBANDPREF: 0x2000004400383, 0x1E000000095, 0x21  //BM817C默认
++BMMODODR: 20  //锁LTE+WCDMA BM806U默认
++BMMODODR: 17   //锁LTE+WCDMA BM817C默认
+AT+CLAC  //列出所有at命令
+AT+CFUN=6 //重启模块
+
+AT+BMBANDLOCK=1   //锁fdd
+AT+COPS=1,2,"46011",7   //1代表手动2代表数字格式     手动选择运营商
+at+cosp=0  //自动选择运营商 默认
+//经测试BM817C b5 b8注册不上,BM806U可以注册b8但不稳定容易丢失信号
+//BM806U带贴纸的Windows10 下联通卡无法建立连接，openwrt下正常
+at+cops=0  //自动注册网络
+at+cops=2  //手动注销网络
+AT+COPS=4,2,"46011",7  //手动自动配合
+
+电信卡网络总是注册不上终极解决方法   手动选择运营商  、、多试几次 //
+AT+COPS=1,2,"46011",7   //1代表手动2代表数字格式46011代表PLMN,配合手机使用 
+AT+COPS=1,2,"46011"  //也可以
+
+BM806两模块5912联通卡qmi无法获取dns，tty正常
+PLMN运营商识别码
+EARFCN频点
+PCI小区

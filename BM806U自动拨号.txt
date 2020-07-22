@@ -1,0 +1,9 @@
+BM806Uopenwrt下无法开机ttyUSB拨号，需要开机后延迟30秒重启openwrt的网络
+vi /etc/rc.local
+
+sleep 30
+/etc/init.d/network restart
+exit 0
+qmi模式跃点 option metric '5'
+mwan3 无法保存
+opkg install ip6tables

@@ -1,0 +1,9 @@
+1，QMI   cdc-wdm0
+2，ttyUSB
+ttyUSB0 未知
+ttyUSB1 拨号  60Mbps+
+ttyUSB2 AT指令/拨号 60Mbps+
+ttyUSB3 未知
+
+
+联通卡锁band 1 ttyUSB拨号能跑到60M以上
