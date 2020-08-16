@@ -7,3 +7,5 @@ gcom
 
 
 umbim
+
+modemmanger 需要时卸载，树莓派安装此软件包无法拨号

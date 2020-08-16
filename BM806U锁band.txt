@@ -12,6 +12,15 @@ AT+BMBAND  //查看频段（auto模式下有意义）
 AT+BMTCELLINFO  //查看当前注册小区信息、
 AT+BMCELLINFO
 AT+BMRAT  //查看当前网络类型
+
+
+
+AT+BMBANDPREF?
++BMBANDPREF: 0x0, 0x1E000000095, 0x0  //这样才算真正的lte only
+AT+BMBANDPREF?
++BMBANDPREF: 0x0, 0x4, 0x0  //LTE ONLY BAND3
+
+
 //联通LTE b1 b3 b8  WCDMA b1 b8
 //电信LTE b1b3 b5
 //如果注册不上网络则执行"AT+COPS=?"搜索网络
@@ -27,7 +36,7 @@ AT+BMMODODREX=5  //锁LTE only
 AT+BMMODODREX=20  //锁LTE+WCDMA
 AT+BMMOBAPREF?
 AT+BMMOBAPREF=2,0 //(开启设备所有频段，和AT+BMMODODREX效果相同)
-AT+BMMOBAPREF=5,0  //(LTE only，和AT+BMMODODREX效果相同 )
+AT+BMMOBAPREF=5,0  //(LTE only，比AT+BMMODODREX效果好 )
 at+csq  //查看信号强度
 at+cops?  //查看注册的运营商
 AT&F  //恢复默认配置
@@ -45,7 +54,7 @@ at+cosp=0  //自动选择运营商 默认
 //BM806U带贴纸的Windows10 下联通卡无法建立连接，openwrt下正常
 at+cops=0  //自动注册网络
 at+cops=2  //手动注销网络
-AT+COPS=4,2,"46011",7  //手动自动配合
+AT+COPS=4,2,"46011",7  //手动自动配合  //效果好
 
 电信卡网络总是注册不上终极解决方法   手动选择运营商  、、多试几次 //
 AT+COPS=1,2,"46011",7   //1代表手动2代表数字格式46011代表PLMN,配合手机使用 
