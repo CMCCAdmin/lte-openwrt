@@ -1,0 +1,32 @@
+树莓派同时插入tf卡和U盘，默认tf卡启动
+如果想切换为U盘启动
+1，在tf卡启动模式下tf卡和U盘分别挂在/mnt/mmcblk0p1,mmcblk0p2 /mnt/sda1 /mnt/sda2
+2，在/mnt/mmcblk0p1创建bak文件夹，然后mv ./* ./bak/
+3，reboot 此时就是U盘启动
+
+恢复为tf卡启动
+1,在U盘启动模式下 cd /mnt/mmcblk0p1
+2, mv ./bak/* ./
+3 reboot
+
+
+甚至可以在一个系统刷另一个系统dd（高风险）
+
+首先刷eeprom为最新
+
+
+rpi4制作openwrt usb启动盘
+download https://github.com/raspberrypi/firmware
+/boot/目录下，将所有.dat和.elf文件复制到启动文件夹(启动盘fat根目录)中。覆盖所有文件
+vi /boot/config.txt
+add dtparam=sd_poll_once=on  //禁用sd卡轮询,避免dmesg报错
+
+
+
+
+
+
+start 19；00
+58
+烤机一小时最高温度64
+待机40

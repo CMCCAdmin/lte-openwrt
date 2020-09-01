@@ -1,0 +1,50 @@
+4.9.123
+openssl speed -multi 4 -evp aes-128-gcm
+evp             109573.74k   116723.54k   120941.74k   121072.30k   121394.52k   120154.79k
+openssl speed -multi 4 -evp aes-256-gcm
+evp              87374.67k    92243.69k    94398.98k    94995.11k    94205.27k    93973.16k
+openssl speed -multi 4 -evp chacha20
+evp             383433.33k   650356.39k  1160007.42k  1312015.36k  1338862.25k  1338463.57k
+openssl speed -multi 4 -evp chacha20-poly1305
+evp             294453.43k   481535.96k   898771.46k  1032598.53k  1063185.07k  1062962.15k
+
+5.4.60
+openssl speed -multi 4 -evp aes-128-gcm
+evp              98240.26k   104932.84k   107334.66k   108082.18k   108189.17k   108208.32k
+openssl speed -multi 4 -evp aes-256-gcm
+evp              79875.02k    84279.94k    85633.71k    85979.14k    86015.50k    86015.51k
+openssl speed -multi 4 -evp chacha20
+evp             348085.69k   644638.63k  1157058.73k  1310985.56k  1337333.08k  1338813.10k
+openssl speed -multi 4 -evp chacha20-poly1305
+evp             278075.51k   477752.32k   897934.85k  1031889.58k  1063889.58k  1061442.90k
+
+
+OC 2.0Ghz
+4.19.123
+openssl speed -multi 4 -evp aes-128-gcm
+evp             147504.34k   156681.77k   160947.37k   162737.83k   160819.88k   161546.24k 3A
+openssl speed -multi 4 -evp aes-256-gcm
+evp             116247.42k   122635.71k   125518.51k   126746.97k   125165.57k   125337.60k
+openssl speed -multi 4 -evp chacha20
+evp             507152.92k   862407.96k  1541174.78k  1748348.25k  1738661.89k   593668.78k  概率重启
+openssl speed -multi 4 -evp chacha20-poly1305
+evp             389511.47k   641019.07k  1152717.23k  1376907.61k   795516.93k   504266.75k 概率重启
+5.4.60
+openssl speed -multi 4 -evp aes-128-gcm
+evp             127439.60k   135987.61k   138869.42k   139386.88k   139154.77k   139892.05k 2A
+evp             130757.27k   139417.92k   143290.79k   143372.97k   144435.88k   144042.67k 3A
+openssl speed -multi 4 -evp aes-256-gcm
+evp             104607.58k   110101.99k   111253.25k   112115.37k   112437.93k   112416.09k
+evp             106369.96k   112395.54k   113889.28k   114365.10k   114791.77k   114191.02k 3A
+openssl speed -multi 4 -evp chacha20
+evp             462844.95k   858611.78k   566392.23k   621521.58k   630360.75k   630898.69k
+大概率重启
+openssl speed -multi 4 -evp chacha20-poly1305
+evp             366714.15k   635348.89k   412105.47k   488688.98k   500793.34k   502895.96k
+大概率重启
+
+
+
+raspbian 64bit openssl 跑和openwrt相同
+
+
